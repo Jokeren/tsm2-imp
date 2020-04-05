@@ -10,7 +10,7 @@
 
 #include "multiply.cuh"
 
-#include "kernels_mtsm2_2.cuh"
+#include "kernels.cuh"
 
 
 #define EPS 10e-3
