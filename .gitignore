@@ -1,2 +1,6 @@
 test
 scratch
+*.o
+gen
+print
+multiply

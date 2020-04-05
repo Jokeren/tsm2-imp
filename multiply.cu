@@ -10,7 +10,7 @@
 
 #include "multiply.cuh"
 
-#include "kernels.cuh"
+#include "kernels_mtsm2_2.cuh"
 
 
 #define EPS 10e-3
@@ -278,6 +278,7 @@ bool runKernels(const float* A, const float* B, float* C,
     cudaErrchk(cudaDeviceSynchronize());
     cudaErrchk(cudaEventElapsedTime(&time, start, end));
     cudaErrchk(cudaEventElapsedTime(&timeTotal, startTotal, endTotal));
+    printf("cublas time consume:%f,\t total time: %f\n", time, timeTotal);
     reportTestSuccess<float>("CUBLAS Test", getGFLOPs<float>(time, m, n, k), getGFLOPs<float>(timeTotal, m, n, k)); 
 
     cublasErrchk(cublasDestroy(handle));
@@ -316,6 +317,7 @@ bool runKernels(const float* A, const float* B, float* C,
     cudaErrchk(cudaDeviceSynchronize());
     cudaErrchk(cudaEventElapsedTime(&time, start, end));
     cudaErrchk(cudaEventElapsedTime(&timeTotal, startTotal, endTotal));
+    printf("tsm time consume: %f,\t total time: %f\n", time, timeTotal);
     status = matrixCompare<float>(C, candC, m, n, iFail, jFail);
     if (status)
     {
