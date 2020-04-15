@@ -10,7 +10,7 @@ CPP_FILES = main.cpp
 # ------------------------------------------------------------------------------
 
 # CUDA Compiler and Flags
-CUDA_PATH = /usr/local/cuda
+CUDA_PATH = /sw/summit/cuda/10.1.243
 CUDA_INC_PATH = $(CUDA_PATH)/include
 CUDA_BIN_PATH = $(CUDA_PATH)/bin
 CUDA_LIB_PATH = $(CUDA_PATH)/lib64
@@ -23,7 +23,7 @@ NVCC_FLAGS := -m32
 else
 NVCC_FLAGS := -m64
 endif
-NVCC_FLAGS += -g -Wno-deprecated-gpu-targets --std=c++11 \
+NVCC_FLAGS += -g -Wno-deprecated-gpu-targets --std=c++11 -O3 \
               --expt-relaxed-constexpr 
 NVCC_INCLUDE = 
 NVCC_LIBS = 
